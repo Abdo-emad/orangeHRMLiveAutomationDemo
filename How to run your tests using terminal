@@ -1,0 +1,52 @@
+How to run your Tests in Command Prompt:
+Steps:
+1-u should download apache maven then run it in u machine + add MAVEN_HOME in env variables
+2-u should download a dependency called "maven testng integration" then add it in a pom.xml file
+Ex:
+<plugins>
+    [...]
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.5.2</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
+        </configuration>
+      </plugin>
+    [...]
+</plugins>
+3-to identify your testng file as a profile , u should create a tag called profiles then tag profile then tag id
+the write u profile name in the id tag which is describe u testng file
+Ex:
+ <profiles>
+        <profile>
+            <id>Regression</id>
+            <build>
+                <pluginManagement>
+
+                    <plugins>
+
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <version>3.5.2</version>
+                            <configuration>
+                                <suiteXmlFiles>
+                                    <suiteXmlFile>Testng.xml</suiteXmlFile>
+                                </suiteXmlFiles>
+                            </configuration>
+                        </plugin>
+
+                    </plugins>
+                </pluginManagement>
+            </build>
+
+        </profile>
+    </profiles>
+ 4-open cmd in the u project path then write this command:
+ mvn test -PRegression
+ -P >> means profile tage
+ Regression >> means u id name
+
